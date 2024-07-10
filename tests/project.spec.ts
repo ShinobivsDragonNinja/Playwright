@@ -1,6 +1,4 @@
 import { test, expect } from '@playwright/test';
-import assert from 'assert';
-import { escape } from 'querystring';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('https://www.leyaonline.com/pt/');
