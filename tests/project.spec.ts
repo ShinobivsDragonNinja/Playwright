@@ -60,46 +60,51 @@ test.describe('Project', () => {
   });
 
   test('Scenario 6 - Smoke test: Verify if all the pages in the hamburger menu load correctly', async ({ page }) => {
-    await page.getByRole('link', { name: '' }).click();
+    await page.locator('.menu-toggler-btn').click();
     await page.getByRole('link', { name: 'Livros', exact: true }).click();
     await expect(page.getByText('LeYa Livros')).toBeVisible();
     expect(page.url()).toContain('leyaonline.com/pt/livros');
 
-    await page.getByRole('link', { name: '' }).click();
+    await page.locator('.menu-toggler-btn').click();
     await page.getByRole('link', { name: 'Ebooks' }).click();
     await expect(page.getByText('LeYa eBooks')).toBeVisible();
     expect(page.url()).toContain('leyaonline.com/pt/livros/?t=ebooks');
 
-    await page.getByRole('link', { name: '' }).click();
+    await page.locator('.menu-toggler-btn').click();
     await page.getByRole('link', { name: 'Livros Escolares' }).click();
     await expect(page.getByRole('heading', { name: 'Livros Escolares - Faça a sua' })).toBeVisible();
     expect(page.url()).toContain('www.leyaonline.com/pt/escolar');
 
-    await page.getByRole('link', { name: '' }).click();
+    //Timeout because of bug found 🤗
+    await page.waitForTimeout(1000)
+
+    await page.locator('.menu-toggler-btn').click();
     await page.getByRole('link', { name: 'Apoio Escolar' }).click();
     await expect(page.getByText('LeYa Apoio Escolar')).toBeVisible();
     expect(page.url()).toContain('leyaonline.com/pt/apoio-escolar');
 
-    await page.getByRole('link', { name: '' }).click();
+    await page.locator('.menu-toggler-btn').click();
     await page.getByRole('link', { name: 'Acessos Digitais' }).click();
     await expect(page.getByText('LeYa Acessos Digitais')).toBeVisible();
     expect(page.url()).toContain('leyaonline.com/pt/acessos-digitais');
 
-    await page.getByRole('link', { name: '' }).click();
+    await page.locator('.menu-toggler-btn').click();
     await page.getByRole('link', { name: 'Tecnologia' }).click();
     await expect(page.getByText('LeYa Tecnologia')).toBeVisible();
     expect(page.url()).toContain('leyaonline.com/pt/tecnologia');
 
-    await page.getByRole('link', { name: '' }).click();
+    await page.locator('.menu-toggler-btn').click();
     await page.getByRole('link', { name: 'Leya Express' }).click();
     await expect(page.getByRole('heading', { name: 'LEYA EXPRESS LIVROS À' })).toBeVisible();
     expect(page.url()).toContain('leyaonline.com/pt/leya_express');
 
-    //Does not click on "Kobo Plus e_LeYa" because of bug found 🤗
-    //await page.getByRole('link', { name: '' }).click();
-    //await page.getByRole('link', { name: 'Kobo Plus e_LeYa' }).click();
-    //await expect(page.getByRole('heading', { name: 'Escolha a experiência Kobo' })).toBeVisible();
-    //expect(page.url()).toContain('leyaonline.com/pt/koboplus');
+    //Timeout because of bug found 🤗
+    await page.waitForTimeout(1000)
+
+    await page.locator('.menu-toggler-btn').click();
+    await page.getByRole('link', { name: 'Kobo Plus e_LeYa' }).click();
+    await expect(page.getByRole('heading', { name: 'Escolha a experiência Kobo' })).toBeVisible();
+    expect(page.url()).toContain('leyaonline.com/pt/koboplus');
   });
 
   test('Scenario 7 - Performance test - Load page time to be less or equal to 5s', async ({ page }) => {
